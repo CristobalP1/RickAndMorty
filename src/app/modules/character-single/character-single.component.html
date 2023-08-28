@@ -1,0 +1,54 @@
+<!-- <div class="spinner-grow" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div> -->
+
+  <div class="spinner-border m-5" *ngIf="!character" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<div class="card mb-3" style="max-width: 740px;" *ngIf="character">
+  <div class="text-center">
+  </div>
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="character.image || ''" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <div *ngIf="character?.status === 'Alive'" class="status-circle green"></div>
+            <div *ngIf="character?.status === 'Dead'" class="status-circle red"></div>
+            <div *ngIf="character?.status === 'unknown'" class="status-circle yellow"></div>
+            {{character.status || ''}}
+        </h5>
+          <p class="card-text">{{character.name || ''}}</p>
+          <p class="card-text"><small class="text-body-secondary"><samp class="fw-bold">Gender:</samp>{{character.gender || ''}}</small></p>
+          <p class="card-text"><small class="text-body-secondary"><samp class="fw-bold">Species:</samp>{{character.species || ''}}</small></p>
+          <p class="card-text"><small class="text-body-secondary"><samp class="fw-bold">Location:</samp>{{character.location.name || ''}}</small></p>
+          <p class="card-text"><small class="text-body-secondary"><samp class="fw-bold">Origin:</samp>{{character.origin.name || ''}}</small></p>
+          <p class="card-text"><small class="text-body-secondary"><samp class="fw-bold">Created:</samp>{{character.created || '' | dateFormat}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spinner-border m-5" *ngIf="!espisodesFilter" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="container" *ngIf="espisodesFilter">
+    <h1>Episodes</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Espisode</th>
+          <th>Go</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let episode of espisodesFilter?.list">
+          <td>{{episode?.name}}</td>
+          <td>{{episode?.episode}}</td>
+          <td><button (click)="openSingleEpisodePage(episode.id)">Ir</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

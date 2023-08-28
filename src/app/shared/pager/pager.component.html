@@ -1,0 +1,26 @@
+<nav aria-label="Page navigation example" class="pb-4 mt-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" style="cursor: pointer;" [ngClass]="{'disabled': pageCurrent === pageInicial}"  (click)="changePage(-1)">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" style="cursor: pointer;" [ngClass]="{'text-bg-primary': pageCurrent === pageInicial}" (click)="spacePage(1)" >{{pageInicial}}</a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'text-bg-primary': pageCurrent === pageInicial + 1}" *ngIf="pageInicial < finalPage">
+        <span *ngIf="pageCurrent === pageInicial || pageCurrent === pageInicial + 1 || pageCurrent === pageInicial + 2">{{pageInicial + 1}}</span>
+        <span *ngIf="pageCurrent >= pageInicial + 3">...</span>
+      </a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'text-bg-primary': pageCurrent === 3}" *ngIf="pageCurrent >=pageInicial + 1 && pageInicial + 1 < finalPage">
+        <span *ngIf="pageCurrent === pageInicial || pageCurrent === pageInicial + 1 || pageCurrent === pageInicial + 2 || pageCurrent === pageInicial + 3">{{pageInicial + 2}}</span>
+        <span *ngIf="pageCurrent >= pageInicial + 4">{{pageCurrent - pageInicial}}</span>
+      </a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'text-bg-primary': pageCurrent >= 4}" *ngIf="pageCurrent >= pageInicial + 2 && pageInicial + 2 < finalPage">
+        <span *ngIf="pageCurrent === pageInicial || pageCurrent === pageInicial + 1 || pageCurrent === pageInicial + 2 || pageCurrent === pageInicial + 3">{{pageInicial + 3}}</span>
+        <span *ngIf="pageCurrent >= pageInicial + 4">{{pageCurrent}}</span>
+      </a></li>
+      <li class="page-item"><a class="page-link" *ngIf="pageCurrent >= pageInicial + 3 && pageCurrent < finalPage - 1">{{pageCurrent + 1}}</a></li>
+      <li class="page-item"><a class="page-link" *ngIf="pageCurrent <= finalPage - 3">...</a></li>
+    <li class="page-item"><a class="page-link" style="cursor: pointer;" *ngIf="pageCurrent <= finalPage - 1 && finalPage >= 5" (click)="spacePage(finalPage)">{{finalPage}}</a></li>
+      <li class="page-item">
+        <a class="page-link" style="cursor: pointer;" [ngClass]="{'disabled': pageCurrent === finalPage}" (click)="changePage(1)">Next</a>
+      </li>
+    </ul>
+  </nav>

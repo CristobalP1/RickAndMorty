@@ -1,0 +1,20 @@
+
+<mat-spinner style="display: block; margin: auto" *ngIf="!espisodeList"></mat-spinner>
+  <div class="container card-container mt-5" *ngIf="espisodeList">
+    <div class="row">
+      <div class="col-lg-4 col-sm-4 col-xs-6" *ngFor="let episode of espisodeList?.list">
+        <div class="card mt-3">
+          <div class="card-header">
+            Season {{episode?.episode | separarSerie}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Episode {{episode?.episode | separarEpisode}}</h5>
+            <p class="card-text">{{episode?.name}}.</p>
+            <a (click)="openSingleEpisodePage(episode.id)" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-pager *ngIf="espisodeList && espisodeList?.getPage()" [pageInicial]="pageInicial" [finalPage]="espisodeList.getPage()" (pageCurrentNow)="changeCurrent($event)"></app-pager>
